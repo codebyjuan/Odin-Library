@@ -11,11 +11,28 @@
 <main class="content">
     <div>
         <h1>My Library</h1>
-        <button class="button-47">+ Add Book</button>
+        <button class="add-book">+ Add Book</button>
     </div>
     <div class="books">
 
     </div>
+
+    <dialog class="modal">
+        <button class="x">X</button>
+        <form class="add-book-form" action="">
+         
+            <input type="text" id="title" name="title" placeholder="Title" required>
+            
+            <input type="text" id="author" name="author" placeholder="Author" required>
+          
+            <input type="text" id="pages" name="pages" placeholder="Pages" required>
+            <div class="formrow">
+            <label for="haveread">Read?</label>
+            <input type="checkbox" id="haveread" name="haveread">
+        </div>
+            <button type="submit">Add Book</button>
+        </form>
+    </dialog>
 </main>
 
 

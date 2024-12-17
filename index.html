@@ -13,13 +13,15 @@
         <h1>My Library</h1>
         <button class="add-book">+ Add Book</button>
     </div>
+    <div class="books-container">
     <div class="books">
 
     </div>
+</div>
 
     <dialog class="modal">
         <button class="x">X</button>
-        <form class="add-book-form" action="">
+        <form class="add-book-form" action="" method="dialog">
          
             <input type="text" id="title" name="title" placeholder="Title" required>
             
@@ -27,8 +29,8 @@
           
             <input type="text" id="pages" name="pages" placeholder="Pages" required>
             <div class="formrow">
-            <label for="haveread">Read?</label>
-            <input type="checkbox" id="haveread" name="haveread">
+            <label for="haveRead">Read?</label>
+            <input type="checkbox" id="haveRead" name="haveRead">
         </div>
             <button type="submit">Add Book</button>
         </form>

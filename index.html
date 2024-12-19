@@ -9,10 +9,10 @@
 <body>
     
 <main class="content">
-    <div>
-        <h1>My Library</h1>
+    <header>
+        <h1>Odin Library</h1>
         <button class="add-book">+ Add Book</button>
-    </div>
+    </header>
     <div class="books-container">
     <div class="books">
 
@@ -20,7 +20,6 @@
 </div>
 
     <dialog class="modal">
-        <button class="x">X</button>
         <form class="add-book-form" action="" method="dialog">
          <div>
             <input type="text" id="title" name="title" placeholder="Title" required>
@@ -33,10 +32,15 @@
         </div>
             <div class="formrow myLabel">
             <label class="myLabel" for="haveRead">Read?</label>
-            <input type="checkbox" id="haveRead" name="haveRead">
+            <select id="haveRead" name="haveRead">
+                <option value = ""></option>
+                <option value = "Yes">Yes</option>
+                <option value = "No">No</option>
+            </select>
             <div class="slider"></div>
         </div>
             <button type="submit">Add Book</button>
+            <button class="x">Cancel</button>
         </form>
     </dialog>
 </main>

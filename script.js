@@ -6,8 +6,8 @@ const deleteButton = document.querySelector('.delete-book')
 const main = document.querySelector('.books')
 
 
-openModal.addEventListener('click', () => {modal.showModal();})
-closeModal.addEventListener('click', () => {modal.close();})
+openModal.addEventListener('click', () => {modal.showModal(); console.log("showing modal")})
+closeModal.addEventListener('click', () => {modal.close(); console.log("hiding modal")})
 
 
 
@@ -19,7 +19,7 @@ const haveRead = document.getElementById("haveRead").checked;
 const myLibrary = [];
 
 bookForm.addEventListener('submit', (event) => {
-    event.preventDefault;
+    event.preventDefault();
 
 
     // Get input values dynamically
@@ -98,8 +98,10 @@ main.addEventListener('click', (event) => {
         // Check the current text and toggle it
         if (event.target.textContent === "Read") {
             event.target.textContent = "Not Read";
+            event.target.classList = "unread toggle-read"
         } else {
             event.target.textContent = "Read";
+            event.target.classList = "read toggle-read"
         }
     }
 });

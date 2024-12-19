@@ -26,7 +26,9 @@ bookForm.addEventListener('submit', (event) => {
     const title = document.getElementById("title").value;
     const author = document.getElementById("author").value;
     const pages = document.getElementById("pages").value;
-    const haveRead = document.getElementById("haveRead").checked;
+  
+    const haveReadValue = document.getElementById("haveRead").value; // "Yes" or "No"
+    const haveRead = haveReadValue === "Yes";
 
     addBookToLibrary(title, author, pages, haveRead);
 
@@ -40,11 +42,11 @@ function renderBook(title, author, pages, haveRead, index){
     bookObj.innerHTML = `<div class="testing"> <p>Title: ${title}</p>
     <p>Author: ${author}</p>
     <p>pages: ${pages}</p>
-     <label for="readStatus">Read? </label>
-            <select class="read-status" data-index="${index}">
-                <option value="true" ${haveRead ? "selected" : ""}>Yes</option>
-                <option value="false" ${!haveRead ? "selected" : ""}>No</option>
-            </select>
+ <p>
+                <button class="toggle-read ${haveRead ? 'read' : 'unread'}">
+                    ${haveRead ? "Read" : "Not Read"}
+                </button>
+            </p> <!--If read is true read button else not read button-->
     <button class="delete-book"  data-index="${index}">Remove</button> </div>` //gets index from the parameter and adds it to the specific delete button
     bookObj.className = "book";
     main.appendChild(bookObj);
@@ -87,5 +89,17 @@ main.addEventListener('click', (event) => {
         deleteButtons.forEach((button, newIndex) => {
             button.dataset.index = newIndex;
         });
+    }
+});
+
+//event deligation for toggle button 
+main.addEventListener('click', (event) => {
+    if (event.target.classList.contains('toggle-read')) {
+        // Check the current text and toggle it
+        if (event.target.textContent === "Read") {
+            event.target.textContent = "Not Read";
+        } else {
+            event.target.textContent = "Read";
+        }
     }
 });

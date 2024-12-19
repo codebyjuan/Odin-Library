@@ -19,6 +19,11 @@ A basic library app where you can add, view, and manage books.
 
 ---
 
+## Live Demo
+[Odin Library Live Test](https://codebyjuan.github.io/Odin-Library/)
+
+---
+
 ## Built With
 - HTML
 - CSS

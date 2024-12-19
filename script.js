@@ -2,6 +2,7 @@ const modal = document.querySelector('.modal')
 const openModal = document.querySelector('.add-book')
 const closeModal = document.querySelector('.x')
 const bookForm = document.querySelector('.add-book-form')
+const deleteButton = document.querySelector('.delete-book')
 const main = document.querySelector('.books')
 
 
@@ -15,10 +16,7 @@ const author = document.getElementById("author").value;
 const pages = document.getElementById("pages").value;
 const haveRead = document.getElementById("haveRead").checked;
 
-const myLibrary = [ { title: "1984", author: "George Orwell", pages: 328, haveRead: false },
-    { title: "To Kill a Mockingbird", author: "Harper Lee", pages: 281, haveRead: false },
-    { title: "The Great Gatsby", author: "F. Scott Fitzgerald", pages: 180, haveRead: false }
-];
+const myLibrary = [];
 
 bookForm.addEventListener('submit', (event) => {
     event.preventDefault;
@@ -37,15 +35,21 @@ bookForm.addEventListener('submit', (event) => {
     modal.close(); // Close the modal
 });
  
-function renderBook(title, author, pages, haveRead){
+function renderBook(title, author, pages, haveRead, index){
     bookObj = document.createElement("div");
-    bookObj.innerHTML = `<p>Title: ${title}</p>
+    bookObj.innerHTML = `<div class="testing"> <p>Title: ${title}</p>
     <p>Author: ${author}</p>
     <p>pages: ${pages}</p>
-    <p>Read?</p>`
+     <label for="readStatus">Read? </label>
+            <select class="read-status" data-index="${index}">
+                <option value="true" ${haveRead ? "selected" : ""}>Yes</option>
+                <option value="false" ${!haveRead ? "selected" : ""}>No</option>
+            </select>
+    <button class="delete-book"  data-index="${index}">Remove</button> </div>` //gets index from the parameter and adds it to the specific delete button
     bookObj.className = "book";
     main.appendChild(bookObj);
    
+    
 
 }
 
@@ -60,7 +64,28 @@ function Book(title, author, pages, haveRead){
 function addBookToLibrary(title, author, pages, haveRead) {
     const newBook = new Book(title, author, pages, haveRead);
     myLibrary.push(newBook)
-    renderBook(title, author, pages, haveRead);
+    renderBook(title, author, pages, haveRead, myLibrary.length - 1); //gets the index of the book to add to library
     console.log("pushing book!")
 }
 
+addBookToLibrary("1984", "George Orwell", 328, false);
+addBookToLibrary("To Kill a Mockingbird", "Harper Lee", 281, false);
+addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald", 180, false);
+
+
+//event deligation to remove book
+main.addEventListener('click', (event) => {
+    if (event.target.classList.contains('delete-book')) {
+        const index = parseInt(event.target.dataset.index);
+        // Remove from array
+        myLibrary.splice(index, 1);
+        // Remove from DOM
+        event.target.closest('.book').remove();
+        
+        // Refresh all indices
+        const deleteButtons = document.querySelectorAll('.delete-book');
+        deleteButtons.forEach((button, newIndex) => {
+            button.dataset.index = newIndex;
+        });
+    }
+});
